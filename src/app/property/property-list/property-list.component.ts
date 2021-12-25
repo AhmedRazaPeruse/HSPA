@@ -11,7 +11,7 @@ export class PropertyListComponent implements OnInit {
   //pass data child to parent
   //Ename : string = "Bharia Builder Authority"
 
-  properties: any;
+  properties: Array<any>;
 
   constructor(private HousingService: HousingService) { }
 
