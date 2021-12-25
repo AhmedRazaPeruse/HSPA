@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HousingService } from '../../services/housing.service';
 
 @Component({
   selector: 'app-property-list',
@@ -11,14 +11,19 @@ export class PropertyListComponent implements OnInit {
   //pass data child to parent
   //Ename : string = "Bharia Builder Authority"
 
-  properties: Array<any> = []  ;
+  properties: any;
 
-  constructor(private http:HttpClient) { }
+  constructor(private HousingService: HousingService) { }
 
   ngOnInit(): void {
-    this.http.get('data/properties.json').subscribe(
-      data=>console.log(data)
+
+    this.HousingService.getAllProperties().subscribe(
+      data=>{
+        this.properties=data;
+        console.log(data);
+      }, error => {
+        console.log(error);
+      }
     )
   }
-
 }
