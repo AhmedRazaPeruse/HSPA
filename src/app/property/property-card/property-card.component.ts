@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { IProperty } from '../IProperty.interface';
 
 @Component({
   selector: 'app-property-card',
@@ -17,6 +18,6 @@ export class PropertyCardComponent implements OnInit {
   //Get Data From Child to Parent Component By Using Decorater
   //@Input() property_name : any
 
-  @Input() property : any
+  @Input() property!: IProperty;
 
 }

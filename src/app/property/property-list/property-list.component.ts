@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HousingService } from '../../services/housing.service';
+import { IProperty } from '../IProperty.interface';
 
 @Component({
   selector: 'app-property-list',
@@ -11,7 +12,7 @@ export class PropertyListComponent implements OnInit {
   //pass data child to parent
   //Ename : string = "Bharia Builder Authority"
 
-  properties: Array<any>;
+  properties: Array<IProperty> = [];
 
   constructor(private HousingService: HousingService) { }
 
@@ -19,6 +20,7 @@ export class PropertyListComponent implements OnInit {
 
     this.HousingService.getAllProperties().subscribe(
       data=>{
+        debugger
         this.properties=data;
         console.log(data);
       }, error => {
