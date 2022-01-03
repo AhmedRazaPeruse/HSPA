@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { HousingService } from '../../services/housing.service';
 import { IProperty } from '../IProperty.interface';
 
@@ -12,17 +13,20 @@ export class PropertyListComponent implements OnInit {
   //pass data child to parent
   //Ename : string = "Bharia Builder Authority"
 
+  SellRent = 1;
   properties: Array<IProperty> = [];
 
-  constructor(private HousingService: HousingService) { }
+  constructor(private route: ActivatedRoute, private HousingService: HousingService) { }
 
   ngOnInit(): void {
-
-    this.HousingService.getAllProperties().subscribe(
+    if(this.route.snapshot.url.toString()){
+      this.SellRent = 2;
+    }
+    this.HousingService.getAllProperties(this.SellRent).subscribe(
       data=>{
-        debugger
         this.properties=data;
-        console.log(data);
+        //console.log(data);
+        //console.log(this.route.snapshot.url.toString())
       }, error => {
         console.log(error);
       }
